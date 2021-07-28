@@ -1711,7 +1711,8 @@ form.form_w3layouts {
     margin: 2em 0 0;
 }
 
-.contact-form input[type="text"] {
+.contact-form input[type="text"],
+.contact-form input[type="password"],select {
     width: 48.5%;
     color: #000;
     background: #ededed;
@@ -1727,9 +1728,10 @@ form.form_w3layouts {
     margin-right: 1em;
 }
 
-.contact-form input[type="email"] {
-    width: 100%;
+.contact-form input[type="email"]{
+    width: 48.5%;
     margin: 2em 0;
+    margin-right: 1em;
     color: #000;
     background: #ededed;
     outline: none;
@@ -1754,12 +1756,14 @@ form.form_w3layouts {
 }
 
 .contact-form input[type="email"],
-.contact-form textarea,
-.contact-form input[type="text"] {
+.contact-form textarea,select,
+.contact-form input[type="text"],
+.contact-form input[type="password"] {
     border: none;
 }
 
-.contact-form input[type="submit"] {
+.contact-form input[type="submit"],
+.contact-form input[type="reset"] {
     border: none;
     outline: none;
     color: #fff;

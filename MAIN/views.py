@@ -17,3 +17,7 @@ def about_us(request):
 
 def contact_us(request):
     return render(request, 'contact.html')
+
+
+def sign_up(request):
+    return render(request, 'signup.html')
