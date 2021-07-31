@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from MAIN.forms import registrationForm
 
 # Create your views here.
 
@@ -20,4 +21,5 @@ def contact_us(request):
 
 
 def sign_up(request):
-    return render(request, 'signup.html')
+    context = {'form': registrationForm()}
+    return render(request, 'signup.html', context)

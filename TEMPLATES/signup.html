@@ -172,16 +172,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="contact-top1">
                             <h5>send us a note</h5>
                             <form action="" class="form_w3layouts">
-                                <input type="text" placeholder="First Name" required>
-                                <input type="text" placeholder="Last Name" required>
-                                <input class="email" type="email" placeholder="Email" required="">
-                                <select name="" id="">
-                                    <option value="">Select User Type</option>
-                                    <option value="">User</option>
-                                    <option value="">Librarian</option>
-                                </select>
-                                <input type="password" placeholder="Passowrd" required style="margin-right: 1em;">
-                                <input type="password" placeholder="Confirm Passowrd" required>
+                                {% comment %} <input type="text" placeholder="First Name" required> {% endcomment %}
+                                {{form.first_name}}
+                                {{form.middle_name}}
+                                {% comment %} <input type="text" placeholder="Last Name" required> {% endcomment %}
+                                {{form.last_name}}
+                                {% comment %} <input class="email" type="email" placeholder="Email" required=""> {% endcomment %}
+                                {{form.email}}
+                                {{form.gender.1}}
+                                {{form.gender.2}}
+                                {{form.phone}}
+                                {% comment %} <select name="" id=""> {% endcomment %}
+                                    {% comment %} <option value="">Select User Type</option> {% endcomment %}
+                                    {% comment %} <option value="">User</option> {% endcomment %}
+                                    {% comment %} <option value="">Librarian</option> {% endcomment %}
+                                {% comment %} </select> {% endcomment %}
+                                {{form.account_type}}
+                                {% comment %} <input type="password" placeholder="Passowrd" required style="margin-right: 1em;"> {% endcomment %}
+                                {% comment %} <input type="password" placeholder="Confirm Passowrd" required> {% endcomment %}
+                                {{form.password}}
+                                {{form.profile_pic}}
                                 <center>
                                     <input type="submit" value="Submit">
                                     <input type="reset" value="Reset">
