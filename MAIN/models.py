@@ -80,12 +80,24 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
     def has_perm(self, perm, obj=None):
         return True
 
     def has_module_perms(self, app_label):
         return True
 
+    @property
+    def superuser_status(self):
+        return self.is_superuser
+
+    @property
+    def staff_status(self):
+        return self.is_staff
+
+    @property
+    def active_status(self):
+        return self.is_active
 
     def __str__(self) -> str:
         return self.id
