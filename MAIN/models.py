@@ -58,15 +58,15 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=50, null=True)
     email = models.EmailField(max_length=254, unique=True)
     gender_choices = [
-        ('Male', 'M'),
-        ('Female', 'F')
+        ('M', 'Male'),
+        ('F', 'Female')
     ]
-    gender = models.CharField(max_length=50, choices=gender_choices,null=True)
+    gender = models.CharField(max_length=50, choices=gender_choices, null=True)
     phone = models.CharField(max_length=20, null=True)
     account_type_choices = [
-        ('Admin', 'admin'),
-        ('Librarian', 'librarian'),
-        ('Student', 'student'),
+        ('admin', 'Admin'),
+        ('librarian', 'Librarian'),
+        ('student', 'Student')
     ]
     account_type = models.CharField(
         max_length=50,
