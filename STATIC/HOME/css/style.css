@@ -1777,6 +1777,10 @@ form.form_w3layouts >*{
     border: none;
 }
 
+#id_password{
+    margin-right: 1em;
+}
+
 .contact-form input[type="submit"],
 .contact-form input[type="reset"] {
     border: none;
