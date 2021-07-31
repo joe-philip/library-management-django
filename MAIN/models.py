@@ -25,6 +25,7 @@ class userManager(BaseUserManager):
         user.password = self.set_password(password)
         user.save(using=self._db)
         return user
+
     def create_staffuser(self, email, first_name=None, middle_name=None, last_name=None, password=None):
         user = self.create_user(
             first_name=first_name,
@@ -34,6 +35,19 @@ class userManager(BaseUserManager):
             password=password,
             account_type='librarian',
             is_staff=True
+        )
+        return user
+
+    def create_superuser(self, email, first_name=None, middle_name=None, last_name=None, password=None):
+        user = self.create_user(
+            first_name=first_name,
+            middle_name=middle_name,
+            last_name=last_name,
+            email=email,
+            password=password,
+            account_type='admin',
+            is_staff=True,
+            is_superuser=True
         )
         return user
 
