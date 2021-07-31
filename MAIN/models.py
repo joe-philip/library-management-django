@@ -80,6 +80,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    objects = userManager()
 
     def has_perm(self, perm, obj=None):
         return True
