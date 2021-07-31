@@ -74,7 +74,8 @@ class User(AbstractBaseUser):
         default=account_type_choices[2]
     )
     profile_pic = models.ImageField(
-        upload_to=f'profilePics/{str(id)}/', null=True, blank=True)
+        upload_to=f'profilePics/', null=True, blank=True)
+    date_joined = models.DateTimeField(auto_now=False, auto_now_add=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
