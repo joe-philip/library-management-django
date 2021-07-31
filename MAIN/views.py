@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from MAIN.forms import registrationForm
 
 # Create your views here.
@@ -22,4 +22,15 @@ def contact_us(request):
 
 def sign_up(request):
     context = {'form': registrationForm()}
-    return render(request, 'signup.html', context)
+    if request.method == 'POST':
+        form = registrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            print('Invalid')
+            print(form.errors)
+            context['error']=form.errors
+            return render(request, 'signup.html',context)
+    else:
+        return render(request, 'signup.html', context)

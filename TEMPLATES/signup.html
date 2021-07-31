@@ -184,7 +184,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <!-- contact form grid -->
                         <div class="contact-top1">
                             <h5>send us a note</h5>
-                            <form action="/sign_up" onsubmit="return checkPassowrds()" class="form_w3layouts">
+                            <form action="/sign_up" onsubmit="return checkPassowrds()" class="form_w3layouts" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 {{form.first_name}}
                                 {{form.middle_name}}
                                 {{form.last_name}}
@@ -201,6 +202,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                                 {{form.password}}
                                 <input type="password" id="confirm-password" placeholder="Confirm Password">
+                                <div style="color: red;">{{error}}</div>
                                 <center>
                                     <input type="submit" value="Submit">
                                     <input type="reset" value="Reset">
