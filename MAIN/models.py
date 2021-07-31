@@ -4,6 +4,29 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 
+class userManager(BaseUserManager):
+    def create_user(self, first_name=None, middle_name=None, last_name=None, email=None, gender=None, phone=None, account_type=None, profile_pic=None, is_superuser=False, is_staff=False, is_active=True, password=None):
+        if not email:
+            raise ValueError('Email is a required field')
+        if not password:
+            raise ValueError('Blank passwords are not allowed')
+        user = self.model()
+        user.first_name = first_name
+        user.middle_name = middle_name
+        user.last_name = last_name
+        user.email = self.normalize_email(email)
+        user.gender = gender
+        user.phone = phone
+        user.account_type = account_type
+        user.profile_pic = profile_pic
+        user.is_superuser = is_superuser
+        user.is_active = is_active
+        user.is_staff = is_staff
+        user.password = self.set_password(password)
+        user.save(using=self._db)
+        return user
+
+
 class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50, null=True)
