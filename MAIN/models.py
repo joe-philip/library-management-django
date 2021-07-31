@@ -22,7 +22,7 @@ class userManager(BaseUserManager):
         user.is_superuser = is_superuser
         user.is_active = is_active
         user.is_staff = is_staff
-        user.password = self.set_password(password)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
