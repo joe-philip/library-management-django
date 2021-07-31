@@ -101,4 +101,4 @@ class User(AbstractBaseUser):
         return self.is_active
 
     def __str__(self) -> str:
-        return self.id
+        return str(self.id)
