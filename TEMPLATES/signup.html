@@ -41,6 +41,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
         rel="stylesheet">
     <!-- //online-fonts -->
+    <script>
+        function checkPassowrds(){
+            password=document.getElementById("id_password").value
+            confirmpassword=document.getElementById("confirm-password").value
+            if (password==confirmpassword){
+                return true;
+            }
+            else{
+                alert('Passwords do not match');
+                return false;
+            }
+        }
+    </script>
 </head>
 
 
@@ -171,7 +184,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <!-- contact form grid -->
                         <div class="contact-top1">
                             <h5>send us a note</h5>
-                            <form action="/sign_up" class="form_w3layouts">
+                            <form action="/sign_up" onsubmit="return checkPassowrds()" class="form_w3layouts">
                                 {{form.first_name}}
                                 {{form.middle_name}}
                                 {{form.last_name}}
