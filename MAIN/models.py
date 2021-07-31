@@ -61,7 +61,7 @@ class User(AbstractBaseUser):
         ('Male', 'M'),
         ('Female', 'F')
     ]
-    gender = models.CharField(max_length=50, choices=gender_choices)
+    gender = models.CharField(max_length=50, choices=gender_choices,null=True)
     phone = models.CharField(max_length=20, null=True)
     account_type_choices = [
         ('Admin', 'admin'),
