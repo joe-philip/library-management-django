@@ -1710,6 +1710,9 @@ a.right.carousel-control.test-right-control {
 form.form_w3layouts {
     margin: 2em 0 0;
 }
+form.form_w3layouts >*{
+    margin: 1em 0;
+}
 
 .contact-form input[type="text"],
 .contact-form input[type="password"],select {
@@ -1723,15 +1726,27 @@ form.form_w3layouts {
     display: inline-block;
     font-family: 'Merriweather Sans', sans-serif;
 }
-
-.contact-form input[type="text"]:first-child {
+#id_account_type{
     margin-right: 1em;
+}
+.contact-form input[type="text"]:first-child,
+.gender-container {
+    margin-right: 1em;
+}
+.gender-container{
+    width: 48.5%;
+    display: inline-block;
+}
+.profile-picture-container{
+    padding-left: 1em;
+    width: 48.5%;
+    display: inline-block;
 }
 
 .contact-form input[type="email"]{
     width: 48.5%;
-    margin: 2em 0;
-    margin-right: 1em;
+    /* margin: 2em 0; */
+    /* margin-right: 1em; */
     color: #000;
     background: #ededed;
     outline: none;
