@@ -77,8 +77,6 @@ def sign_up(request):
             user.save()
             return redirect('/')
         else:
-            print('Invalid')
-            print(form.errors)
             context['error'] = form.errors
             return render(request, 'signup.html', context)
     else:
