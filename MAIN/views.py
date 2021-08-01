@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from MAIN.forms import registrationForm,loginForm
+from django.contrib.auth.models import auth
+from MAIN.forms import registrationForm, loginForm
 from MAIN.functions import createAdmin
 
 # Create your views here.
@@ -11,8 +12,15 @@ def home(request):
 
 
 def login(request):
-    context={'form':loginForm}
-    return render(request, 'login.html',context)
+    context = {'form': loginForm}
+    return render(request, 'login.html', context)
+
+
+def logout(request):
+    if request.session.has_key('email'):
+        request.session.flush()
+    auth.logout(request)
+    return redirect('/')
 
 
 def about_us(request):
