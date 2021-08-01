@@ -81,12 +81,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li>
                                 <a href="/contact_us">Contact us</a>
                             </li>
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a href="/dashboard">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="/logout">Logout</a>
+                            </li>
+                            {% else %}
                             <li>
                                 <a href="/login">Login</a>
                             </li>
                             <li>
                                 <a href="/sign_up">Sign up</a>
                             </li>
+                            {% endif %}
                         </ul>
                         <!-- search-bar -->
                         <div class="search-bar-agileits">
