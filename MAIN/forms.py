@@ -3,6 +3,12 @@ from MAIN.models import User
 
 
 class registrationForm(forms.ModelForm):
+    account_type_choices = [
+        ('student', 'Student'),
+        ('librarian', 'Librarian')
+    ]
+    account_type = forms.ChoiceField(choices=account_type_choices)
+
     class Meta:
         model = User
         fields = ('first_name',
@@ -22,8 +28,8 @@ class registrationForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'Email*',
-                'margin':'0'}),
+                'margin': '0'}),
             'gender': forms.RadioSelect(),
             'phone': forms.TextInput(attrs={'placeholder': 'Phone*'}),
-            'password':forms.PasswordInput(attrs={'placeholder':'Password'})
+            'password': forms.PasswordInput(attrs={'placeholder': 'Password'})
         }
