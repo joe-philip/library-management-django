@@ -71,9 +71,14 @@ def sign_up(request):
     context = {'form': registrationForm()}
     if request.method == 'POST':
         form = registrationForm(request.POST, request.FILES)
+        if request.POST['account_type'] == 'student':
+            if not User.objects.filter(account_type='librarian').exists():
+                context['error'] = '''Sorry, We do not have any librarian staffs avialable to approve you registration... Registration could not be completed'''
+                return render(request, 'signup.html', context)
         if form.is_valid():
             user = form.save()
             user.set_password(user.password)
+            user.is_active=0
             user.save()
             return redirect('/')
         else:
