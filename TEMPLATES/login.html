@@ -166,9 +166,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="panel-title">Sign In</div>
-                            <div class="fpassword">
+                            {% comment %} <div class="fpassword">
                                 <a href="#">Forgot password?</a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                         <div style="padding-top:30px" class="panel-body">
                             <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
@@ -203,10 +203,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="form-group">
                                     <div class="col-md-12 control">
                                         <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                            Don't have an account!
-                                            <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-                                                Sign Up Here
-                                            </a>
+                                            Don't have an account!<a href="/sign_up">Sign Up Here</a>
                                         </div>
                                     </div>
                                 </div>
