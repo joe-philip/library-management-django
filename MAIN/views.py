@@ -25,12 +25,14 @@ def sign_up(request):
     if request.method == 'POST':
         form = registrationForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            user.set_password(user.password)
+            user.save()
             return redirect('/')
         else:
             print('Invalid')
             print(form.errors)
-            context['error']=form.errors
-            return render(request, 'signup.html',context)
+            context['error'] = form.errors
+            return render(request, 'signup.html', context)
     else:
         return render(request, 'signup.html', context)
