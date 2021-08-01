@@ -19,9 +19,7 @@ class registrationForm(forms.ModelForm):
                 'placeholder': 'First Name*',
                 'required': ''}),
             'middle_name': forms.TextInput(attrs={'placeholder': 'Middle Name'}),
-            'last_name': forms.TextInput(attrs={
-                'placeholder': 'Last Name',
-                'style':'margin-right:1em'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'Email*',
                 'margin':'0'}),

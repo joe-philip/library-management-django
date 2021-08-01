@@ -180,28 +180,37 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="abtext">up</span>
                 </h4>
                 <div class="contact-form">
-                    <div class="col-md-7">
+                    <div class="col-md-7" style="height: 100%;">
                         <!-- contact form grid -->
                         <div class="contact-top1">
-                            <h5>send us a note</h5>
+                            <h5>Registration Form</h5>
                             <form action="/sign_up" onsubmit="return checkPassowrds()" class="form_w3layouts" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                {{form.first_name}}
-                                {{form.middle_name}}
-                                {{form.last_name}}
-                                {{form.email}}
-                                {{form.account_type}}
-                                {{form.phone}}
-                                <div class="gender-container">
-                                    {{form.gender.1}}
-                                    {{form.gender.2}}
+                                <div class="form-row-3">
+                                    {{form.first_name}}
+                                    {{form.middle_name}}
+                                    {{form.last_name}}
+                                </div>
+                                <div class="form-row-2">
+                                    {{form.email}}
+                                    {{form.account_type}}
+                                </div>
+                                <div class="form-row-2">
+                                    {{form.phone}}
+                                    <div class="gender-container">
+                                        <label>Gender</label>
+                                        {{form.gender.1}}
+                                        {{form.gender.2}}
+                                    </div>
                                 </div>
                                 <div class="profile-picture-container">
                                     <label for="profile_pic">Profile Picture</label>
                                     {{form.profile_pic}}
                                 </div>
-                                {{form.password}}
-                                <input type="password" id="confirm-password" placeholder="Confirm Password">
+                                <div class="form-row-2">
+                                    {{form.password}}
+                                    <input type="password" id="confirm-password" placeholder="Confirm Password">
+                                </div>
                                 <div style="color: red;">{{error}}</div>
                                 <center>
                                     <input type="submit" value="Submit">

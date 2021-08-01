@@ -1706,17 +1706,38 @@ a.right.carousel-control.test-right-control {
 .address p a:hover {
     color: #34c663;
 }
-
-form.form_w3layouts {
-    margin: 2em 0 0;
+form.form_w3layouts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
-form.form_w3layouts >*{
-    margin: 1em 0;
+form.form_w3layouts > *{
+    margin: 10px 0;
+    gap:5px
+}
+form.form_w3layouts > .form-row-3{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
+    /* justify-content: stretch !important; */
+    flex-basis: auto;
+}
+form.form_w3layouts > .form-row-3 > *{
+    width: 25%;
+    flex-grow: 1;
+}
+form.form_w3layouts > .form-row-2{
+    display: flex;
+    flex-basis: auto;
 }
 
+form.form_w3layouts > .form-row-2 > *{
+    display: flex;
+    flex-grow: 1;
+}
 .contact-form input[type="text"],
 .contact-form input[type="password"],select {
-    width: 48.5%;
     color: #000;
     background: #ededed;
     outline: none;
@@ -1726,27 +1747,20 @@ form.form_w3layouts >*{
     display: inline-block;
     font-family: 'Merriweather Sans', sans-serif;
 }
-#id_account_type{
-    margin-right: 1em;
-}
-.contact-form input[type="text"]:first-child,
-.gender-container {
-    margin-right: 1em;
-}
+
 .gender-container{
-    width: 48.5%;
+    align-self: center;
     display: inline-block;
+}
+.gender-container>*{
+    margin: 10px;
 }
 .profile-picture-container{
     padding-left: 1em;
-    width: 48.5%;
     display: inline-block;
 }
 
 .contact-form input[type="email"]{
-    width: 48.5%;
-    /* margin: 2em 0; */
-    /* margin-right: 1em; */
     color: #000;
     background: #ededed;
     outline: none;
@@ -1759,7 +1773,7 @@ form.form_w3layouts >*{
 
 .contact-form textarea {
     resize: none;
-    width: 100%;
+    /* width: 100%; */
     background: #ededed;
     color: #000;
     font-size: 1em;
@@ -1775,10 +1789,6 @@ form.form_w3layouts >*{
 .contact-form input[type="text"],
 .contact-form input[type="password"] {
     border: none;
-}
-
-#id_password{
-    margin-right: 1em;
 }
 
 .contact-form input[type="submit"],
@@ -1810,6 +1820,7 @@ form.form_w3layouts >*{
     box-shadow: 05px 10px 10px 0px rgba(216, 216, 216, 0.78);
     -webkit-box-shadow: 5px 10px 10px 0px rgba(216, 216, 216, 0.78);
     -moz-box-shadow: 5px 10px 10px 0px rgba(216, 216, 216, 0.78);
+    height: 100%;
     /* box-shadow: 5px 10px 10px 0px rgba(216, 216, 216, 0.78); */
 }
 
@@ -2449,9 +2460,6 @@ button#btn-signup {
     .social-button .fa {
         font-size: 1.8em;
         line-height: 1.7;
-    }
-    .contact-form input[type="text"]:first-child {
-        margin-right: 10px;
     }
 }
 
