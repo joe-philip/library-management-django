@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
 from MAIN.forms import registrationForm
+from MAIN.functions import createAdmin
 
 # Create your views here.
 
 
 def home(request):
+    createAdmin()
     return render(request, 'index.html')
 
 
