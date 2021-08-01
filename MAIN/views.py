@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import auth
 from MAIN.forms import registrationForm, loginForm
 from MAIN.functions import createAdmin
+from MAIN.models import User
 
 # Create your views here.
 
@@ -22,12 +23,13 @@ def login(request):
             user = auth.authenticate(email=email, password=password)
             if user is not None:
                 auth.login(request, user)
-                return HttpResponse('Login Successfull')
+                request.session['email'] = email
+                return redirect('/dashboard')
             else:
                 context['error'] = 'Invalid Credentials'
                 return render(request, 'login.html', context)
         else:
-            context['error']=form.errors
+            context['error'] = form.errors
     else:
         return render(request, 'login.html', context)
 
@@ -37,6 +39,14 @@ def logout(request):
         request.session.flush()
     auth.logout(request)
     return redirect('/')
+
+
+def dashboard(request):
+    user_active = User.objects.get(email=request.session['email'])
+    if user_active.account_type == 'admin':
+        return redirect('/ADMIN/dashboard')
+    else:
+        return redirect('/logout')
 
 
 def about_us(request):
