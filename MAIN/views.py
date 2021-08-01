@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import auth
 from MAIN.forms import registrationForm, loginForm
@@ -13,7 +14,22 @@ def home(request):
 
 def login(request):
     context = {'form': loginForm}
-    return render(request, 'login.html', context)
+    if request.method == 'POST':
+        form = loginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = auth.authenticate(email=email, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return HttpResponse('Login Successfull')
+            else:
+                context['error'] = 'Invalid Credentials'
+                return render(request, 'login.html', context)
+        else:
+            context['error']=form.errors
+    else:
+        return render(request, 'login.html', context)
 
 
 def logout(request):
