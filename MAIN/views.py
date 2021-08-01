@@ -4,6 +4,7 @@ from django.contrib.auth.models import auth
 from MAIN.forms import registrationForm, loginForm
 from MAIN.functions import createAdmin
 from MAIN.models import User
+from decorators import unauthenticatedUser
 
 # Create your views here.
 
@@ -13,6 +14,7 @@ def home(request):
     return render(request, 'index.html')
 
 
+@unauthenticatedUser
 def login(request):
     context = {'form': loginForm}
     if request.method == 'POST':
@@ -57,6 +59,7 @@ def contact_us(request):
     return render(request, 'contact.html')
 
 
+@unauthenticatedUser
 def sign_up(request):
     context = {'form': registrationForm()}
     if request.method == 'POST':
