@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth
 from MAIN.forms import registrationForm, loginForm
 from MAIN.functions import createAdmin
 from MAIN.models import User
-from decorators import unauthenticatedUser
+from MAIN.decorators import unauthenticatedUser
 
 # Create your views here.
 
@@ -44,11 +44,18 @@ def logout(request):
 
 
 def dashboard(request):
-    user_active = User.objects.get(email=request.session['email'])
-    if user_active.account_type == 'admin':
-        return redirect('/ADMIN/dashboard')
+    if request.session.has_key('email'):
+        user_active = User.objects.get(email=request.session['email'])
+        if user_active.account_type == 'admin':
+            return redirect('/ADMIN/dashboard')
+        else:
+            return redirect('/logout')
     else:
-        return redirect('/logout')
+        context = {
+            'form': loginForm,
+            'error': 'Login to access Dashboard page'
+        }
+        return render(request, 'login.html', context)
 
 
 def about_us(request):
