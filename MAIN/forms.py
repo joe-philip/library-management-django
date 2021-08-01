@@ -33,3 +33,15 @@ class registrationForm(forms.ModelForm):
             'phone': forms.TextInput(attrs={'placeholder': 'Phone*'}),
             'password': forms.PasswordInput(attrs={'placeholder': 'Password'})
         }
+
+
+class loginForm(forms.Form):
+    email = forms.CharField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'id': 'login-username',
+        'placeholder': 'Email'}))
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'id': 'login-password',
+            'placeholder': 'Password'}))
