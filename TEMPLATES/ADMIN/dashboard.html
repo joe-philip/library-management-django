@@ -76,7 +76,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!--left-fixed -navigation-->
 
 		<!-- header-starts -->
-		<div class="sticky-header header-section ">
+		<div class="sticky-header header-section" style="top: 0;position: static;">
 			<div class="header-left">
 				<!--toggle button start-->
 				<button id="showLeftPush"><i class="fa fa-bars"></i></button>
@@ -95,7 +95,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">
-									<span class="prfil-img"><img src="{% static 'DASHBOARD/images/2.jpg' %}" alt=""> </span>
+									<span class="prfil-img"><img src="{% static 'DASHBOARD/images/2.jpg' %}" alt="">
+									</span>
 									<div class="user-name">
 										<p>{{user.first_name}}</p>
 										<span>Administrator</span>
@@ -119,9 +120,51 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 		</div>
 		<!-- //header-ends -->
-		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="col_3">
+					<div class="r3_counter_box" style="padding: 40px;">
+						Librarians
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">First Name</th>
+									<th scope="col">Middle Name</th>
+									<th scope="col">Last Name</th>
+									<th scope="col">Email</th>
+									<th scope="col">Gender</th>
+									<th scope="col">Phone</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for librarian in librarians %}
+								<tr>
+									<th scope="row">{{librarian.id}}</th>
+									<td>{{librarian.first_name}}</td>
+									<td>{{librarian.middle_name}}</td>
+									<td>{{librarian.last_name}}</td>
+									<td>{{librarian.email}}</td>
+									<td>
+									{% if librarian.gender == 'M' %}
+									Male
+									{% else %}
+									Female
+									{% endif %}
+									</td>
+									<td>{{librarian.phone}}</td>
+									<td></td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--footer-->
-		<div class="footer">
+		<div class="footer" style="bottom: 0; position: fixed;">
 			<p>&copy; 2018 Glance Design Dashboard. All Rights Reserved | Design by <a href="https://w3layouts.com/"
 					target="_blank">w3layouts</a></p>
 		</div>
@@ -152,7 +195,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<!-- //side nav js -->
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="{% static 'DASHBOARD/js/bootstrap.js' %}"> </script>
+	<script src=" {% static 'DASHBOARD/js/bootstrap.js' %}"> </script>
 	<!-- //Bootstrap Core JavaScript -->
 
 </body>
