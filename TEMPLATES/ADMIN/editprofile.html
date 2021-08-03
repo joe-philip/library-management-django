@@ -64,7 +64,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             display: flex;
             flex-direction: column;
         }
-
+        .text-label-pair>input[type="text"],
+        .text-label-pair>input[type="email"],
+        input[type="file"]{
+            border-radius: 5px;
+        }
         #content>form .radio-container {
             display: flex;
             flex-direction: column;
@@ -160,46 +164,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="r3_counter_box" style="padding: 40px;">
                         <div id="content">
                             <form action="">
+                                <h1>Edit Profile</h1>
                                 <div class="row-3">
                                     <div class="text-label-pair">
                                         <label for="first-name">First Name</label>
-                                        <input type="text" name="first-name">
+                                        <input type="text" name="first-name" class="form-control">
                                     </div>
                                     <div class="text-label-pair">
                                         <label for="middle-name">Middle Name</label>
-                                        <input type="text" name="middle-name">
+                                        <input type="text" name="middle-name" class="form-control">
                                     </div>
                                     <div class="text-label-pair">
                                         <label for="last-name">Last Name</label>
-                                        <input type="text" name="last-name">
+                                        <input type="text" name="last-name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row-2">
                                     <div class="text-label-pair">
                                         <label for="email">Email</label>
-                                        <input type="email" name="email">
+                                        <input type="email" name="email" class="form-control">
                                     </div>
                                     <div class="radio-container">
                                         <label for="gender">Gender</label>
                                         <div class="male">
-                                            <input type="radio" name="gender">Male
-                                            <input type="radio" name="gender">Female
+                                            <input type="radio" name="gender" class="form-check-input" style="margin-right: 5px;">Male
+                                            <input type="radio" name="gender" class="form-check-input" style="margin-right: 5px;">Female
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row-2">
                                     <div class="text-label-pair">
                                         <label for="phone">Phone</label>
-                                        <input type="text" name="phone">
+                                        <input type="text" name="phone" class="form-control">
                                     </div>
                                     <div class="file-field">
-                                        <label for="pro-pic">Profile Picture</label>
-                                        <input type="file" name="pro-pic">
+                                        <!-- <label for="pro-pic">Profile Picture</label> -->
+                                        <label for="pro-pic" class="form-label">Profile Picture</label>
+                                        <input type="file" name="pro-pic" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row-2">
-                                    <input type="submit" value="Submit">
-                                    <input type="reset" value="Reset">
+                                    <input type="submit" class="btn btn-success" value="Submit">
+                                    <input type="reset" class="btn btn-danger" value="Reset">
                                 </div>
                             </form>
                         </div>
