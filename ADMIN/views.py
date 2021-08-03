@@ -46,3 +46,17 @@ def deactivate(request, id):
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
     else:
         return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
+
+
+@checkAdmin
+def delete(request, id):
+    if request.session.has_key('email'):
+        user = User.objects.get(email=request.session['email'])
+        if user.account_type == 'admin':
+            deleteLibrarian = User.objects.filter(id=id)
+            deleteLibrarian.delete()
+            return redirect('/ADMIN/dashboard')
+        else:
+            return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
+    else:
+        return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
