@@ -147,16 +147,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									<td>{{librarian.last_name}}</td>
 									<td>{{librarian.email}}</td>
 									<td>
-									{% if librarian.gender == 'M' %}
-									Male
-									{% else %}
-									Female
-									{% endif %}
+										{% if librarian.gender == 'M' %}
+										Male
+										{% else %}
+										Female
+										{% endif %}
 									</td>
 									<td>{{librarian.phone}}</td>
 									<td>
-										<a href="">Activate</a>/
-										<a href="">Deactivate</a>/
+										{% if librarian.is_active %}
+										<a href="/ADMIN/deactivate/{{librarian.id}}">Deactivate</a>/
+										{% else %}
+										<a href="/ADMIN/activate/{{librarian.id}}">Activate</a>/
+										{% endif %}
 										<a href="">Delete</a>
 									</td>
 								</tr>
