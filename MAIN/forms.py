@@ -45,3 +45,30 @@ class loginForm(forms.Form):
             'class': 'form-control',
             'id': 'login-password',
             'placeholder': 'Password'}))
+
+
+class editProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name',
+                  'middle_name',
+                  'last_name',
+                  'email',
+                  'gender',
+                  'phone',
+                  'profile_pic')
+        widgets = {
+            'first_name': forms.TextInput(attrs={
+                'placeholder': 'First Name*',
+                'required': '',
+                'class':'form-control'}),
+            'middle_name': forms.TextInput(attrs={'placeholder': 'Middle Name','class':'form-control'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name','class':'form-control'}),
+            'email': forms.EmailInput(attrs={
+                'placeholder': 'Email*',
+                'margin': '0',
+                'class':'form-control',
+                'readonly':''}),
+            'gender': forms.RadioSelect(attrs={'class':'form-check-input'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Phone*','class':'form-control'})
+        }
