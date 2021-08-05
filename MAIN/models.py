@@ -55,14 +55,14 @@ class userManager(BaseUserManager):
 class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50, null=True, blank=True)
-    last_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True,blank=True)
     email = models.EmailField(max_length=254, unique=True)
     gender_choices = [
         ('M', 'Male'),
         ('F', 'Female')
     ]
-    gender = models.CharField(max_length=50, choices=gender_choices, null=True)
-    phone = models.CharField(max_length=20, null=True)
+    gender = models.CharField(max_length=50, choices=gender_choices, null=True,blank=True)
+    phone = models.CharField(max_length=20, null=True,blank=True)
     account_type_choices = [
         ('admin', 'Admin'),
         ('librarian', 'Librarian'),

@@ -16,7 +16,7 @@ def home(request):
 
 @unauthenticatedUser
 def login(request):
-    context = {'form': loginForm}
+    context = {'form': loginForm()}
     if request.method == 'POST':
         form = loginForm(request.POST)
         if form.is_valid():
@@ -52,7 +52,7 @@ def dashboard(request):
             return redirect('/logout')
     else:
         context = {
-            'form': loginForm,
+            'form': loginForm(),
             'error': 'Login to access Dashboard page'
         }
         return render(request, 'login.html', context)
