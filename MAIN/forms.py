@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import fields, widgets
 from MAIN.models import User
 
 
@@ -61,14 +62,27 @@ class editProfileForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={
                 'placeholder': 'First Name*',
                 'required': '',
-                'class':'form-control'}),
-            'middle_name': forms.TextInput(attrs={'placeholder': 'Middle Name','class':'form-control'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name','class':'form-control'}),
+                'class': 'form-control'}),
+            'middle_name': forms.TextInput(attrs={'placeholder': 'Middle Name', 'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'Email*',
                 'margin': '0',
-                'class':'form-control',
-                'readonly':''}),
-            'gender': forms.RadioSelect(attrs={'class':'form-check-input'}),
-            'phone': forms.TextInput(attrs={'placeholder': 'Phone*','class':'form-control'})
+                'class': 'form-control',
+                'readonly': ''}),
+            'gender': forms.RadioSelect(attrs={'class': 'form-check-input'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Phone*', 'class': 'form-control'})
         }
+
+
+class changePassword(forms.ModelForm):
+    old_password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Old Passowrd'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Re-enter Passowrd'}))
+
+    class Meta:
+        model = User
+        fields = ('password',)
+        widgets = {'password': forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'New Password'}), }
