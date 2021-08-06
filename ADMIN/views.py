@@ -3,7 +3,7 @@ from django.http.response import HttpResponse
 from ADMIN.decorators import checkAdmin
 from ADMIN.functions import getAdminDashboard
 from MAIN.models import User
-from MAIN.forms import editProfileForm
+from MAIN.forms import editProfileForm, changePasswordForm
 
 # Create your views here.
 
@@ -70,7 +70,8 @@ def editprofile(request):
         if user.account_type == 'admin':
             context = {'editProfileForm': editProfileForm(instance=user)}
             if request.method == 'POST':
-                formData = editProfileForm(request.POST, request.FILES, instance=user)
+                formData = editProfileForm(
+                    request.POST, request.FILES, instance=user)
                 if formData.is_valid():
                     formData.save()
                     return redirect('/ADMIN/dashboard')
@@ -79,6 +80,27 @@ def editprofile(request):
                     return render(request, 'ADMIN/editprofile.html', context)
             else:
                 return render(request, 'ADMIN/editprofile.html', context)
+        else:
+            return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
+    else:
+        return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
+
+
+@checkAdmin
+def changePassword(request):
+    if request.session.has_key('email'):
+        user = User.objects.get(email=request.session['email'])
+        if user.account_type == 'admin':
+            if request.method == 'POST':
+                formObj = changePasswordForm(request.POST, instance=user)
+                if formObj.is_valid():
+                    user = formObj.save()
+                    user.set_password(user.password)
+                    return redirect('/logout')
+            else:
+                context = {
+                    'changePasswordForm': changePasswordForm(instance=user)}
+                return render(request, 'ADMIN/changepassword.html', context)
         else:
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
     else:

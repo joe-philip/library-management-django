@@ -83,6 +83,9 @@ class changePasswordForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('password',)
+        fields = ('old_password', 'password', 'confirm_password')
         widgets = {'password': forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'New Password'}), }
+            attrs={'class': 'form-control', 'placeholder': 'New Password'})}
+        labels = {
+            'password': 'New Password'
+        }
