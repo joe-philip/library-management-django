@@ -95,7 +95,8 @@ def changePassword(request):
                 formObj = changePasswordForm(request.POST, instance=user)
                 if formObj.is_valid():
                     user = formObj.save()
-                    user.set_password(user.password)
+                    user.set_password(formObj.cleaned_data['password'])
+                    user.save()
                     return redirect('/logout')
             else:
                 context = {
