@@ -75,7 +75,7 @@ class editProfileForm(forms.ModelForm):
         }
 
 
-class changePassword(forms.ModelForm):
+class changePasswordForm(forms.ModelForm):
     old_password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Old Passowrd'}))
     confirm_password = forms.CharField(widget=forms.PasswordInput(
