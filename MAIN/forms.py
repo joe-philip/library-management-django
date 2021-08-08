@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import fields, widgets
 from MAIN.models import User
 
 
@@ -80,6 +79,21 @@ class changePasswordForm(forms.ModelForm):
         attrs={'class': 'form-control', 'placeholder': 'Old Passowrd'}))
     confirm_password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Re-enter Passowrd'}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+        old_password = cleaned_data.get('old_password')
+        current_user = User.objects.get(email=self.instance.email)
+        if not current_user.check_password(old_password):
+            raise forms.ValidationError('Incorrect old password')
+        if new_password != confirm_password:
+            raise forms.ValidationError('Passwords do not match')
+        else:
+            if len(new_password) < 8:
+                raise forms.ValidationError(
+                    'Minimum 8 characters required for password')
 
     class Meta:
         model = User

@@ -91,6 +91,7 @@ def changePassword(request):
     if request.session.has_key('email'):
         user = User.objects.get(email=request.session['email'])
         if user.account_type == 'admin':
+            context = {'changePasswordForm': changePasswordForm(instance=user)}
             if request.method == 'POST':
                 formObj = changePasswordForm(request.POST, instance=user)
                 if formObj.is_valid():
@@ -98,9 +99,10 @@ def changePassword(request):
                     user.set_password(formObj.cleaned_data['password'])
                     user.save()
                     return redirect('/logout')
+                else:
+                    context['errors'] = formObj.errors
+                    return render(request, 'ADMIN/changepassword.html', context)
             else:
-                context = {
-                    'changePasswordForm': changePasswordForm(instance=user)}
                 return render(request, 'ADMIN/changepassword.html', context)
         else:
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
