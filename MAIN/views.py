@@ -1,10 +1,12 @@
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import auth
-from MAIN.forms import registrationForm, loginForm
+from django.contrib.auth.decorators import login_required
+from MAIN.forms import registrationForm, loginForm, editProfileForm, changePasswordForm
 from MAIN.functions import createAdmin
 from MAIN.models import User
 from MAIN.decorators import unauthenticatedUser
+from ADMIN.functions import getAdminDashboard
 
 # Create your views here.
 
@@ -12,6 +14,14 @@ from MAIN.decorators import unauthenticatedUser
 def home(request):
     createAdmin()
     return render(request, 'index.html')
+
+
+def about_us(request):
+    return render(request, 'about.html')
+
+
+def contact_us(request):
+    return render(request, 'contact.html')
 
 
 @unauthenticatedUser
@@ -43,11 +53,13 @@ def logout(request):
     return redirect('/')
 
 
+@login_required
 def dashboard(request):
     if request.session.has_key('email'):
-        user_active = User.objects.get(email=request.session['email'])
-        if user_active.account_type == 'admin':
-            return redirect('/ADMIN/dashboard')
+        user = User.objects.get(email=request.session['email'])
+        if user.account_type == 'admin':
+            context = getAdminDashboard(user)
+            return render(request, 'ADMIN/dashboard.html', context)
         else:
             return redirect('/logout')
     else:
@@ -58,12 +70,63 @@ def dashboard(request):
         return render(request, 'login.html', context)
 
 
-def about_us(request):
-    return render(request, 'about.html')
+@login_required
+def editprofile(request):
+    if request.session.has_key('email'):
+        user = User.objects.get(email=request.session['email'])
+        context = {'editProfileForm': editProfileForm(instance=user)}
+        if request.method == 'POST':
+            formData = editProfileForm(
+                request.POST, request.FILES, instance=user)
+            if formData.is_valid():
+                formData.save()
+                return redirect('/dashboard')
+            else:
+                context['errors'] = formData.errors
+                return render(request, 'editprofile.html', context)
+        else:
+            return render(request, 'editprofile.html', context)
+    else:
+        return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
 
 
-def contact_us(request):
-    return render(request, 'contact.html')
+@login_required
+def changePassword(request):
+    if request.session.has_key('email'):
+        user = User.objects.get(email=request.session['email'])
+        if user.account_type == 'admin':
+            context = {'changePasswordForm': changePasswordForm(instance=user)}
+            if request.method == 'POST':
+                formObj = changePasswordForm(request.POST, instance=user)
+                if formObj.is_valid():
+                    user = formObj.save()
+                    user.set_password(formObj.cleaned_data['password'])
+                    user.save()
+                    return redirect('/logout')
+                else:
+                    context['errors'] = formObj.errors
+                    return render(request, 'changepassword.html', context)
+            else:
+                return render(request, 'changepassword.html', context)
+        else:
+            return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
+    else:
+        return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
+
+
+@login_required
+def viewProfile(request):
+    if request.session.has_key('email'):
+        user = User.objects.get(email=request.session['email'])
+        if user.account_type == 'admin':
+            context = {
+                'user': User.objects.get(email=request.session['email'])
+            }
+            return render(request, 'viewprofile.html', context)
+        else:
+            return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
+    else:
+        return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
 
 
 @unauthenticatedUser
@@ -78,7 +141,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             user.set_password(user.password)
-            user.is_active=0
+            user.is_active = 0
             user.save()
             return redirect('/')
         else:
