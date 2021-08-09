@@ -108,3 +108,18 @@ def changePassword(request):
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
     else:
         return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
+
+
+@checkAdmin
+def viewProfile(request):
+    if request.session.has_key('email'):
+        user = User.objects.get(email=request.session['email'])
+        if user.account_type == 'admin':
+            context = {
+                'user': User.objects.get(email=request.session['email'])
+                }
+            return render(request, 'viewprofile.html', context)
+        else:
+            return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
+    else:
+        return HttpResponse('Login to access this page<br><a href="/login">Go Home</a>')
