@@ -55,8 +55,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<h1><a class="navbar-brand" href="/"><span
-									class="fa fa-area-chart"></span>Chronicle<span class="dashboard_text">Admin
+						<h1><a class="navbar-brand" href="/"><span class="fa fa-area-chart"></span>Chronicle<span
+									class="dashboard_text">Admin
 									Dashboard</span></a></h1>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -95,7 +95,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">
-									<span class="prfil-img"><img src="{% static 'DASHBOARD/images/2.jpg' %}" alt="">
+									<span class="prfil-img">
+										{% if user.profile_pic %}
+										<img style="width: 75px;height: auto;" src="{{user.profile_pic.url}}" alt="">
+										{% endif %}
 									</span>
 									<div class="user-name">
 										<p>{{user.first_name}}</p>
@@ -156,11 +159,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									<td>{{librarian.phone}}</td>
 									<td>
 										{% if librarian.is_active %}
-										<a href="/ADMIN/deactivate/{{librarian.id}}" onclick="return confirm('This action would deactivate librarian {{librarian.first_name}}')">Deactivate</a>/
+										<a href="/ADMIN/deactivate/{{librarian.id}}"
+											onclick="return confirm('This action would deactivate librarian {{librarian.first_name}}')">Deactivate</a>/
 										{% else %}
-										<a href="/ADMIN/activate/{{librarian.id}}" onclick="return confirm('This action would activate librarian {{librarian.first_name}}')">Activate</a>/
+										<a href="/ADMIN/activate/{{librarian.id}}"
+											onclick="return confirm('This action would activate librarian {{librarian.first_name}}')">Activate</a>/
 										{% endif %}
-										<a href="/ADMIN/delete/{{librarian.id}}" onclick="return confirm('This action would delete librarian {{librarian.first_name}}')">Delete</a>
+										<a href="/ADMIN/delete/{{librarian.id}}"
+											onclick="return confirm('This action would delete librarian {{librarian.first_name}}')">Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
