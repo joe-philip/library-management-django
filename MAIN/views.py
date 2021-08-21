@@ -3,10 +3,9 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 from MAIN.forms import registrationForm, loginForm, editProfileForm, changePasswordForm
-from MAIN.functions import createAdmin
+from MAIN.functions import *
 from MAIN.models import User
 from MAIN.decorators import unauthenticatedUser
-from ADMIN.functions import getAdminDashboard
 
 # Create your views here.
 
@@ -60,6 +59,9 @@ def dashboard(request):
         if user.account_type == 'admin':
             context = getAdminDashboard(user)
             return render(request, 'ADMIN/dashboard.html', context)
+        elif user.account_type == 'librarian':
+            context = getLibrarianDashboard(user)
+            return render(request, 'LIBRARIAN/dashboard.html',context)
         else:
             return redirect('/logout')
     else:

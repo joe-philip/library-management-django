@@ -22,3 +22,14 @@ def getAdminDashboard(userObject):
     except:
         pass
     return context
+
+
+def getLibrarianDashboard(userObject):
+    context = {
+        'user': userObject
+    }
+    try:
+        context['librarians'] = User.objects.filter(account_type='student')
+    except:
+        pass
+    return context
