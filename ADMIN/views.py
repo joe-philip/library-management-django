@@ -13,7 +13,7 @@ def activate(request, id):
         if user.account_type == 'admin':
             activateLibrarian = User.objects.filter(id=id)
             activateLibrarian.update(is_active=1)
-            return redirect('/ADMIN/dashboard')
+            return redirect('/dashboard')
         else:
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
     else:
@@ -27,7 +27,7 @@ def deactivate(request, id):
         if user.account_type == 'admin':
             deactivateLibrarian = User.objects.filter(id=id)
             deactivateLibrarian.update(is_active=0)
-            return redirect('/ADMIN/dashboard')
+            return redirect('/dashboard')
         else:
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
     else:
@@ -41,7 +41,7 @@ def delete(request, id):
         if user.account_type == 'admin':
             deleteLibrarian = User.objects.filter(id=id)
             deleteLibrarian.delete()
-            return redirect('/ADMIN/dashboard')
+            return redirect('/dashboard')
         else:
             return HttpResponse('Sorry you are not authorized to access this page<br><a href="/">Go Home</a>')
     else:
