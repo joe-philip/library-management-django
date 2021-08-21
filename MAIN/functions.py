@@ -1,4 +1,6 @@
 from MAIN.models import User
+
+
 def createAdmin():
     if not User.objects.filter(email='admin@library.com').exists():
         User.objects.create_user(
@@ -9,3 +11,14 @@ def createAdmin():
             is_superuser=1,
             is_staff=1
         ).save()
+
+
+def getAdminDashboard(userObject):
+    context = {
+        'user': userObject
+    }
+    try:
+        context['librarians'] = User.objects.filter(account_type='librarian')
+    except:
+        pass
+    return context
