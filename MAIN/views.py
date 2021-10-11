@@ -151,3 +151,6 @@ def sign_up(request):
             return render(request, 'signup.html', context)
     else:
         return render(request, 'signup.html', context)
+
+def allan(self):
+    pass
