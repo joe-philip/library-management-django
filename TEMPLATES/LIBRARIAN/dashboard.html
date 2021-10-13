@@ -164,13 +164,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									<td>{{librarian.phone}}</td>
 									<td>
 										{% if librarian.is_active %}
-										<a href="/ADMIN/deactivate/{{librarian.id}}"
+										<a href="/LIBRARIAN/deactivate/{{librarian.id}}"
 											onclick="return confirm('This action would deactivate librarian {{librarian.first_name}}')">Deactivate</a>/
 										{% else %}
-										<a href="/ADMIN/activate/{{librarian.id}}"
+										<a href="/LIBRARIAN/activate/{{librarian.id}}"
 											onclick="return confirm('This action would activate librarian {{librarian.first_name}}')">Activate</a>/
 										{% endif %}
-										<a href="/ADMIN/delete/{{librarian.id}}"
+										<a href="/LIBRARIAN/delete/{{librarian.id}}"
 											onclick="return confirm('This action would delete librarian {{librarian.first_name}}')">Delete</a>
 									</td>
 								</tr>
