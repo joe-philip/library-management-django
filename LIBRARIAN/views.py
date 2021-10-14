@@ -1,10 +1,12 @@
 from django.shortcuts import redirect
 from django.http.response import HttpResponse
 from MAIN.models import User
+from LIBRARIAN.decorators import checkLibrarian
 
 # Create your views here.
 
 
+@checkLibrarian
 def activate(request, id):
     if 'email' in request.session:
         user = User.objects.get(email=request.session['email'])
@@ -20,6 +22,7 @@ def activate(request, id):
             'Login to access this page<br><a href="/login">Go Home</a>')
 
 
+@checkLibrarian
 def deactivate(request, id):
     if 'email' in request.session:
         user = User.objects.get(email=request.session['email'])
@@ -35,6 +38,7 @@ def deactivate(request, id):
             'Login to access this page<br><a href="/login">Go Home</a>')
 
 
+@checkLibrarian
 def delete(request, id):
     if 'email' in request.session:
         user = User.objects.get(email=request.session['email'])
