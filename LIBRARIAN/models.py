@@ -47,7 +47,7 @@ class publishers(models.Model):
         verbose_name = "Publisher"
 
     def __str__(self) -> str:
-        return f'{self.id}'
+        return f'{self.id}.\t{self.name}'
 
 
 class book_category(models.Model):
