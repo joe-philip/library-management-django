@@ -1,7 +1,9 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.http.response import HttpResponse
+from django.contrib import messages
 from MAIN.models import User
 from LIBRARIAN.decorators import checkLibrarian
+from LIBRARIAN.forms import newAuthorForm, newBookCategoryForm, newPublisherForm, newBookForm
 
 # Create your views here.
 
@@ -52,3 +54,79 @@ def delete(request, id):
     else:
         return HttpResponse(
             'Login to access this page<br><a href="/login">Go Home</a>')
+
+
+@checkLibrarian
+def addAuthor(request):
+    if request.method == 'POST':
+        formObject = newAuthorForm(request.POST)
+        if formObject.is_valid():
+            formObject.save()
+            return redirect('/dashboard')
+        else:
+            messages.error(request, formObject.errors)
+            return redirect('/dashboard')
+    else:
+        context = {
+            'form': newAuthorForm(),
+            'heading': 'New Author Form',
+            'action': '/LIBRARIAN/addAuthor'
+        }
+        return render(request, 'LIBRARIAN/add.html', context)
+
+
+@checkLibrarian
+def addPublisher(request):
+    if request.method == 'POST':
+        formObject = newPublisherForm(request.POST)
+        if formObject.is_valid():
+            formObject.save()
+            return redirect('/dashboard')
+        else:
+            messages.error(request, formObject.errors)
+            return redirect('/dashboard')
+    else:
+        context = {
+            'form': newPublisherForm(),
+            'heading': 'New Publisher Form',
+            'action': '/LIBRARIAN/addPublisher'
+        }
+        return render(request, 'LIBRARIAN/add.html', context)
+
+
+@checkLibrarian
+def addCategory(request):
+    if request.method == 'POST':
+        formObject = newBookCategoryForm(request.POST)
+        if formObject.is_valid():
+            formObject.save()
+            return redirect('/dashboard')
+        else:
+            messages.error(request, formObject.errors)
+            return redirect('/dashboard')
+    else:
+        context = {
+            'form': newBookCategoryForm(),
+            'heading': 'New Category Form',
+            'action': '/LIBRARIAN/addCategory'
+        }
+        return render(request, 'LIBRARIAN/add.html', context)
+
+
+@checkLibrarian
+def addBook(request):
+    if request.method == 'POST':
+        formObject = newBookForm(request.POST)
+        if formObject.is_valid():
+            formObject.save()
+            return redirect('/dashboard')
+        else:
+            messages.error(request, formObject.errors)
+            return redirect('/dashboard')
+    else:
+        context = {
+            'form': newBookForm(),
+            'heading': 'New Book Form',
+            'action': '/LIBRARIAN/addBook'
+        }
+        return render(request, 'LIBRARIAN/add.html', context)
