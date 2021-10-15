@@ -36,7 +36,7 @@ class authors(models.Model):
         verbose_name = "Author"
 
     def __str__(self) -> str:
-        return f'{self.id}'
+        return f'{self.id}.\t{self.name}'
 
 
 class publishers(models.Model):
