@@ -57,76 +57,64 @@ def delete(request, id):
 
 
 @checkLibrarian
-def addAuthor(request):
-    if request.method == 'POST':
-        formObject = newAuthorForm(request.POST)
-        if formObject.is_valid():
-            formObject.save()
+def add(request, choice):
+    if choice == 'a':   # Add Author
+        if request.method == 'POST':
+            formObject = newAuthorForm(request.POST)
+            if formObject.is_valid():
+                formObject.save()
+            else:
+                messages.error(request, formObject.errors)
             return redirect('/dashboard')
         else:
-            messages.error(request, formObject.errors)
-            return redirect('/dashboard')
-    else:
-        context = {
-            'form': newAuthorForm(),
-            'heading': 'New Author Form',
-            'action': '/LIBRARIAN/addAuthor'
-        }
-        return render(request, 'LIBRARIAN/add.html', context)
-
-
-@checkLibrarian
-def addPublisher(request):
-    if request.method == 'POST':
-        formObject = newPublisherForm(request.POST)
-        if formObject.is_valid():
-            formObject.save()
+            context = {
+                'form': newAuthorForm(),
+                'heading': 'New Author Form',
+                'action': '/LIBRARIAN/add/a'
+            }
+            return render(request, 'LIBRARIAN/add.html', context)
+    elif choice == 'p':  # Add Publisher
+        if request.method == 'POST':
+            formObject = newPublisherForm(request.POST)
+            if formObject.is_valid():
+                formObject.save()
+            else:
+                messages.error(request, formObject.errors)
             return redirect('/dashboard')
         else:
-            messages.error(request, formObject.errors)
-            return redirect('/dashboard')
-    else:
-        context = {
-            'form': newPublisherForm(),
-            'heading': 'New Publisher Form',
-            'action': '/LIBRARIAN/addPublisher'
-        }
-        return render(request, 'LIBRARIAN/add.html', context)
-
-
-@checkLibrarian
-def addCategory(request):
-    if request.method == 'POST':
-        formObject = newBookCategoryForm(request.POST)
-        if formObject.is_valid():
-            formObject.save()
+            context = {
+                'form': newPublisherForm(),
+                'heading': 'New Publisher Form',
+                'action': '/LIBRARIAN/add/p'
+            }
+            return render(request, 'LIBRARIAN/add.html', context)
+    elif choice == 'c':  # Add Category
+        if request.method == 'POST':
+            formObject = newBookCategoryForm(request.POST)
+            if formObject.is_valid():
+                formObject.save()
+            else:
+                messages.error(request, formObject.errors)
             return redirect('/dashboard')
         else:
-            messages.error(request, formObject.errors)
-            return redirect('/dashboard')
+            context = {
+                'form': newBookCategoryForm(),
+                'heading': 'New Category Form',
+                'action': '/LIBRARIAN/add/c'
+            }
+            return render(request, 'LIBRARIAN/add.html', context)
     else:
-        context = {
-            'form': newBookCategoryForm(),
-            'heading': 'New Category Form',
-            'action': '/LIBRARIAN/addCategory'
-        }
-        return render(request, 'LIBRARIAN/add.html', context)
-
-
-@checkLibrarian
-def addBook(request):
-    if request.method == 'POST':
-        formObject = newBookForm(request.POST)
-        if formObject.is_valid():
-            formObject.save()
+        if request.method == 'POST':
+            formObject = newBookForm(request.POST)
+            if formObject.is_valid():
+                formObject.save()
+            else:
+                messages.error(request, formObject.errors)
             return redirect('/dashboard')
-        else:
-            messages.error(request, formObject.errors)
-            return redirect('/dashboard')
-    else:
-        context = {
-            'form': newBookForm(),
-            'heading': 'New Book Form',
-            'action': '/LIBRARIAN/addBook'
-        }
-        return render(request, 'LIBRARIAN/add.html', context)
+        else:          # add Book
+            context = {
+                'form': newBookForm(),
+                'heading': 'New Book Form',
+                'action': '/LIBRARIAN/add/b'
+            }
+            return render(request, 'LIBRARIAN/add.html', context)
