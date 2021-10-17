@@ -64,6 +64,7 @@ def add(request, choice):
             formObject = newAuthorForm(request.POST)
             if formObject.is_valid():
                 formObject.save()
+                messages.success(request,"Successfully Saved new Author")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
@@ -79,6 +80,7 @@ def add(request, choice):
             formObject = newPublisherForm(request.POST)
             if formObject.is_valid():
                 formObject.save()
+                messages.success(request,"Successfully Saved new Publisher")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
@@ -94,6 +96,7 @@ def add(request, choice):
             formObject = newBookCategoryForm(request.POST)
             if formObject.is_valid():
                 formObject.save()
+                messages.success(request,"Successfully Saved new Category")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
@@ -109,6 +112,7 @@ def add(request, choice):
             formObject = newBookForm(request.POST)
             if formObject.is_valid():
                 formObject.save()
+                messages.success(request,"Successfully Saved new Book")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
