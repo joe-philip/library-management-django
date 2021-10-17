@@ -61,7 +61,7 @@ def dashboard(request):
             return render(request, 'ADMIN/dashboard.html', context)
         elif user.account_type == 'librarian':
             context = getLibrarianDashboard(user)
-            return render(request, 'LIBRARIAN/dashboard.html',context)
+            return render(request, 'LIBRARIAN/dashboard.html', context)
         else:
             return redirect('/logout')
     else:

@@ -7,17 +7,18 @@ class books(models.Model):
     name = models.CharField(max_length=50)
     category = models.ForeignKey(
         "LIBRARIAN.book_category",
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         null=True)
     publisher = models.ForeignKey(
         "LIBRARIAN.publishers",
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         null=True)
     author = models.ForeignKey(
         "LIBRARIAN.authors",
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         null=True)
     time_added = models.DateTimeField(auto_now=True, auto_now_add=False)
+    quantity = models.IntegerField(default=1)
 
     class Meta:
         verbose_name_plural = "Books"
