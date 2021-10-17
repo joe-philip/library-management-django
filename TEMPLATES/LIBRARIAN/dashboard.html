@@ -193,6 +193,21 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="main-page">
 				<div class="col_3">
 					<div class="r3_counter_box" style="padding: 40px;">
+						<div id="messages">
+							{% for message in messages %}
+							{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+							<div class="success">
+								{{message}}
+							</div>
+							{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+							<div class="error">
+								{{message}}
+							</div>
+							{% else %}
+							{{message}}
+							{% endif %}
+							{% endfor %}
+						</div>
 						Users
 						<table class="table">
 							<thead>
