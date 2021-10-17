@@ -4,6 +4,7 @@ from django.contrib import messages
 from MAIN.models import User
 from LIBRARIAN.decorators import checkLibrarian
 from LIBRARIAN.forms import newAuthorForm, newBookCategoryForm, newPublisherForm, newBookForm
+from LIBRARIAN.models import authors, book_category, publishers, books
 
 # Create your views here.
 
@@ -118,3 +119,21 @@ def add(request, choice):
                 'action': '/LIBRARIAN/add/b'
             }
             return render(request, 'LIBRARIAN/add.html', context)
+
+
+@checkLibrarian
+def view(request, choice):
+    context = {}
+    if choice == 'a':
+        context['authors'] = authors.objects.all()
+        context['heading'] = 'View Authors'
+    elif choice == 'p':
+        context['publishers'] = publishers.objects.all()
+        context['heading'] = 'View Publishers'
+    elif choice == 'c':
+        context['categories'] = book_category.objects.all()
+        context['heading'] = 'View Categories'
+    else:
+        context['books'] = books.objects.all()
+        context['heading'] = 'View Books'
+    return render(request, 'LIBRARIAN/view.html', context)
