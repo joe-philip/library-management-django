@@ -18,4 +18,8 @@ FIXTURES/
 tokens.txt
 env/
 .vscode/
+<<<<<<< HEAD
 MEDIA/
+=======
+MEDIA
+>>>>>>> 27881ea90bde38569f4cd559b9d9e1f4b988acd4
