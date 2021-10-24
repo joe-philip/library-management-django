@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MAIN',
     'ADMIN',
-    'LIBRARIAN'
+    'LIBRARIAN',
+    'STUDENT'
 ]
 
 AUTH_USER_MODEL = 'MAIN.User'
