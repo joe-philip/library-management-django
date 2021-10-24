@@ -184,7 +184,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <center style="margin-top:10px"><h1>{{heading}}</h1></center>
             <div class="main-page" style="height: 100%;">
                 <div class="col_3" style="height: 100%;">
-                    <form action="{{action}}" method="post" style="height: 100%;">
+                    <form action="{{action}}" method="post" style="height: 100%;" {% if heading == "New Author Form" or heading == "New Book Form" %} enctype="multipart/form-data" {% endif %}>
                     {% csrf_token %}
                         <div class="r3_counter_box" id="form-container" style="padding: 40px;height: 93%;">
                             <div style="display:flex;flex-direction:column;gap: 10px;">

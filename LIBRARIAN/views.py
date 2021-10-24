@@ -61,10 +61,10 @@ def delete(request, id):
 def add(request, choice):
     if choice == 'a':   # Add Author
         if request.method == 'POST':
-            formObject = newAuthorForm(request.POST)
+            formObject = newAuthorForm(request.POST, request.FILES)
             if formObject.is_valid():
                 formObject.save()
-                messages.success(request,"Successfully Saved new Author")
+                messages.success(request, "Successfully Saved new Author")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
@@ -80,7 +80,7 @@ def add(request, choice):
             formObject = newPublisherForm(request.POST)
             if formObject.is_valid():
                 formObject.save()
-                messages.success(request,"Successfully Saved new Publisher")
+                messages.success(request, "Successfully Saved new Publisher")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
@@ -96,7 +96,7 @@ def add(request, choice):
             formObject = newBookCategoryForm(request.POST)
             if formObject.is_valid():
                 formObject.save()
-                messages.success(request,"Successfully Saved new Category")
+                messages.success(request, "Successfully Saved new Category")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
@@ -109,10 +109,10 @@ def add(request, choice):
             return render(request, 'LIBRARIAN/add.html', context)
     else:
         if request.method == 'POST':
-            formObject = newBookForm(request.POST)
+            formObject = newBookForm(request.POST, request.FILES)
             if formObject.is_valid():
                 formObject.save()
-                messages.success(request,"Successfully Saved new Book")
+                messages.success(request, "Successfully Saved new Book")
             else:
                 messages.error(request, formObject.errors)
             return redirect('/dashboard')
