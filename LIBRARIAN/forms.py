@@ -6,6 +6,8 @@ class newAuthorForm(forms.ModelForm):
     class Meta:
         model = authors
         fields = '__all__'
+        widgets = {'date_of_birth': forms.widgets.DateInput(
+            attrs={'type': 'date'})}
 
 
 class newPublisherForm(forms.ModelForm):
