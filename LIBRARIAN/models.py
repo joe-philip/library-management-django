@@ -19,6 +19,7 @@ class books(models.Model):
         null=True)
     time_added = models.DateTimeField(auto_now=True, auto_now_add=False)
     quantity = models.IntegerField(default=1)
+    book_image = models.ImageField(upload_to='Books', null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Books"
