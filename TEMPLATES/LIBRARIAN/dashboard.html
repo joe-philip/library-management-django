@@ -223,31 +223,31 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								</tr>
 							</thead>
 							<tbody>
-								{% for librarian in librarians %}
+								{% for student in students %}
 								<tr>
-									<th scope="row">{{librarian.id}}</th>
-									<td>{{librarian.first_name}}</td>
-									<td>{{librarian.middle_name}}</td>
-									<td>{{librarian.last_name}}</td>
-									<td>{{librarian.email}}</td>
+									<th scope="row">{{student.id}}</th>
+									<td>{{student.first_name}}</td>
+									<td>{{student.middle_name}}</td>
+									<td>{{student.last_name}}</td>
+									<td>{{student.email}}</td>
 									<td>
-										{% if librarian.gender == 'M' %}
+										{% if student.gender == 'M' %}
 										Male
 										{% else %}
 										Female
 										{% endif %}
 									</td>
-									<td>{{librarian.phone}}</td>
+									<td>{{student.phone}}</td>
 									<td>
-										{% if librarian.is_active %}
-										<a href="/LIBRARIAN/deactivate/{{librarian.id}}"
-											onclick="return confirm('This action would deactivate librarian {{librarian.first_name}}')">Deactivate</a>/
+										{% if student.is_active %}
+										<a href="/LIBRARIAN/deactivate/{{student.id}}"
+											onclick="return confirm('This action would deactivate student {{student.first_name}}')">Deactivate</a>/
 										{% else %}
-										<a href="/LIBRARIAN/activate/{{librarian.id}}"
-											onclick="return confirm('This action would activate librarian {{librarian.first_name}}')">Activate</a>/
+										<a href="/LIBRARIAN/activate/{{student.id}}"
+											onclick="return confirm('This action would activate student {{student.first_name}}')">Activate</a>/
 										{% endif %}
-										<a href="/LIBRARIAN/delete/{{librarian.id}}"
-											onclick="return confirm('This action would delete librarian {{librarian.first_name}}')">Delete</a>
+										<a href="/LIBRARIAN/delete/{{student.id}}"
+											onclick="return confirm('This action would delete student {{student.first_name}}')">Delete</a>
 									</td>
 								</tr>
 								{% endfor %}

@@ -29,7 +29,7 @@ def getLibrarianDashboard(userObject):
         'user': userObject
     }
     try:
-        context['librarians'] = User.objects.filter(account_type='student')
+        context['students'] = User.objects.filter(account_type='student')
     except:
         pass
     return context
