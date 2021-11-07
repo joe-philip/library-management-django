@@ -56,12 +56,14 @@ def logout(request):
 def dashboard(request):
     if request.session.has_key('email'):
         user = User.objects.get(email=request.session['email'])
-        if user.account_type == 'admin':
+        if user.account_type == User.account_type_choices[0][0]:
             context = getAdminDashboard(user)
             return render(request, 'ADMIN/dashboard.html', context)
-        elif user.account_type == 'librarian':
+        elif user.account_type == User.account_type_choices[1][0]:
             context = getLibrarianDashboard(user)
             return render(request, 'LIBRARIAN/dashboard.html', context)
+        elif user.account_type == User.account_type_choices[2][0]:
+            return render(request, 'STUDENT/dashboard.html')
         else:
             return redirect('/logout')
     else:
